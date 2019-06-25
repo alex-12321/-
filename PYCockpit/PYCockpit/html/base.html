@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>webmap</title>
+		<link rel="stylesheet" type="text/css" href="../css/page1.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/map.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<style type="text/css">
+			body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+			.BMap_cpyCtrl {
+			    display: none;
+			}
+			.anchorBL {
+			    display: none;
+			}
+		</style>
+		<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=3dHnL6aGEv4y4edoZeNR75Q25NMtQGyM"></script>
+	</head>
+	<body>
+		<div class="bg">
+			<!-- 标题 -->
+			<div id="" class="titlebox">
+				<p id="name">工业园驾驶舱</p>
+				<div class="buttonbox1">
+					<div id="button1" class="unclick">
+						<img src="../img/select1.png" >
+						<h2>园区介绍</h2>
+					</div>
+					<div id="button2" class="unclick">
+						<img src="../img/select1.png" >
+						<h2>环境概览</h2>
+					</div>
+				</div>
+				<div class="buttonbox2" class="unclick">
+					<div id="button3">
+						<img src="../img/select1.png" >
+						<h2>环境监管</h2>
+					</div>
+					<div id="button4" class="unclick">
+						<img src="../img/select1.png" >
+						<h2>企业评价</h2>
+					</div>
+				</div>			
+			</div>
+			<!-- 底部圆形 -->
+			<div id="ring">
+				<img class="ring" src="../img/ring.png" >
+			</div>
+			<div id="scroll_1">
+				<img class="ray rotating1" src="../img/scroll.png" >
+			</div>
+			<div id="scroll_2"> 
+				<img class="ray rotating2" src="../img/scroll.png" >
+			</div>
+			<!-- 地图 -->
+			<div id="map" class="map">
+				<img class="mapbox" src="../img/mapbox.png" >
+				<div id="bdmap"></div>
+			</div>
+			<!-- 铃铛 -->
+			<div class="bell">
+				<img src="../img/Bell.png" >
+			</div>
+			<!-- 侧边框和底部边框 -->
+			<div class="leftborder"></div>
+			<div class="rightborder"></div>
+			<div class="bottomFrameBox"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var map = new BMap.Map('bdmap');
+		
+		$('body').ready(function(){
+			mapInit()
+			clickedInit()
+			rotatingInit()
+			bellIint()
+		})
+		// 标题按钮按下
+		function clickedInit(){
+			changeImg('#button1')
+			for(var i=1; i<=4; i++){
+				$("#button"+i).click({index:i},function(e){
+					changeImg("#button"+e.data.index)
+				})
+			}
+		}
+		// 标题按钮选中
+		function rotatingInit(){
+			changeImg('#button1')
+			for(var i=1; i<=4; i++){
+				$("#button"+i).hover(function(){
+					$('.rotating1').css("-webkit-animation","myrotate1 20s linear infinite")
+					$('.rotating2').css("-webkit-animation","myrotate2 20s linear infinite")
+				},function(){
+					$('.rotating1').css("-webkit-animation","myrotate1 40s linear infinite")
+					$('.rotating2').css("-webkit-animation","myrotate2 40s linear infinite")
+				})
+			}
+		}
+		//图标切换
+		function changeImg(dom){ 
+			for(var i=1; i<=4; i++){
+				$("#button"+i).find('img').css("display","none");
+				$("#button"+i).find('h2').removeClass("click");
+			}
+			$(dom).find('img').css("display","block");
+			$(dom).find('h2').addClass("click");
+		}
+		// 铃铛
+		function bellIint(){
+			$('.bell').hover(function(){
+				$(this).addClass("swing");
+			},function(){
+				$(this).removeClass("swing");
+			})
+		}
+		// 地图初始化
+		function mapInit(){		
+			map.centerAndZoom(new BMap.Point(120.682008,27.681827), 15);
+			//启用滚轮放大缩小  
+			map.enableScrollWheelZoom();                         
+			// 样式
+			map.setMapStyleV2({styleJson:[
+				{
+					"featureType": "businesstowerlabel",
+					"elementType": "labels",
+					"stylers": {
+						"visibility": "off"
+					}
+				}, {
+					"featureType": "businesstowerlabel",
+					"elementType": "labels.icon",
+					"stylers": {
+						"visibility": "off"
+					}
+				}
+			]});
+		}
+	</script>
+</html>

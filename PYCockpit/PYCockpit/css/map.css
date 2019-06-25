@@ -1,0 +1,44 @@
+.map{
+	position: absolute;
+	left: 30.5vw;
+	top: 13.5vw;
+}
+.mapbox{
+	width: 40vw;
+}
+#bdmap{
+	position: absolute;
+	top: 2.8vw;
+	width: 34vw;
+	left: 3vw;
+	height: 17.4vw;
+	border-radius: 2%;
+	/* background-color: aqua; */
+}
+
+/* #heart{
+		position: absolute;
+		width: 35.9vw;
+        height: 47vw;
+		left: 32.6vw;
+		top: 1.45vw;
+        background-color: skyblue;
+        border-radius: 50%;
+        -moz-border-radius: 50%;
+}
+#heart:before,#heart:after{
+        width: 40vw;
+        height: 15vw;
+        left: -1.8vw;
+        top: 0;
+        background: linear-gradient(133deg, transparent 100px, deeppink 0) top;
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+}
+#heart:after{
+        left: 0;
+		left: -1.8vw;
+        transform:rotate(180deg);
+        transform-origin:50% 158%;
+} */
